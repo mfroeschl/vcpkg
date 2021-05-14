@@ -1,0 +1,26 @@
+From 17832c77764c25a3e2987dd2f0c4fd36990f90e3 Mon Sep 17 00:00:00 2001
+From: Marcus Froeschl <marcus@ageet.com>
+Date: Fri, 14 May 2021 10:57:18 +0900
+Subject: [PATCH] Disable region detection in ClientConfiguration constructor
+ as it causes severe delay
+
+---
+ aws-cpp-sdk-core/source/client/ClientConfiguration.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/aws-cpp-sdk-core/source/client/ClientConfiguration.cpp b/aws-cpp-sdk-core/source/client/ClientConfiguration.cpp
+index 562698c3d0..ae582e3ad9 100644
+--- a/aws-cpp-sdk-core/source/client/ClientConfiguration.cpp
++++ b/aws-cpp-sdk-core/source/client/ClientConfiguration.cpp
+@@ -122,7 +122,7 @@ ClientConfiguration::ClientConfiguration() :
+         return;
+     }
+ 
+-    if (Aws::Utils::StringUtils::ToLower(Aws::Environment::GetEnv("AWS_EC2_METADATA_DISABLED").c_str()) != "true")
++    if (false)
+     {
+         auto client = Aws::Internal::GetEC2MetadataClient();
+         if (client)
+-- 
+2.25.1.windows.1
+
