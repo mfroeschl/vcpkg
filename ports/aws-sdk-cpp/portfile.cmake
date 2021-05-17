@@ -10,6 +10,7 @@ vcpkg_from_github(
         patch-relocatable-rpath.patch
         fix-AWSSDKCONFIG.patch
 		fix-ClientConfig.patch
+		fix-WinHttpSyncHttpClient.patch
 )
 
 string(COMPARE EQUAL "${VCPKG_CRT_LINKAGE}" "dynamic" FORCE_SHARED_CRT)
@@ -45,7 +46,6 @@ vcpkg_configure_cmake(
     OPTIONS
         ${EXTRA_ARGS}
         -DENABLE_UNITY_BUILD=ON
-		-DUSE_IXML_HTTP_REQUEST_2=ON
         -DENABLE_TESTING=OFF
         -DFORCE_SHARED_CRT=${FORCE_SHARED_CRT}
         -DCMAKE_DISABLE_FIND_PACKAGE_Git=TRUE
